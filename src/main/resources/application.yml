@@ -1,0 +1,17 @@
+server:
+  port: 8015
+spring:
+  application:
+    name: mydemo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.179.128:3306/gltest?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  project: src/main/java
+  resources: src/main/resources

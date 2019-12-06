@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gl.mapper.PayErrorOrderHandleMapper">
+  <resultMap id="BaseResultMap" type="com.gl.entity.PO.PayErrorOrderHandle">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="trade_amount" jdbcType="DECIMAL" property="tradeAmount" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="evidence_no" jdbcType="VARCHAR" property="evidenceNo" />
+    <result column="reference_no" jdbcType="VARCHAR" property="referenceNo" />
+    <result column="batch_no" jdbcType="VARCHAR" property="batchNo" />
+    <result column="prove_photo" jdbcType="VARCHAR" property="provePhoto" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pay_error_order_handle
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.gl.entity.PO.PayErrorOrderHandle">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pay_error_order_handle (order_no, trade_amount, trade_time, 
+      evidence_no, reference_no, batch_no, 
+      prove_photo, create_time, create_by
+      )
+    values (#{orderNo,jdbcType=VARCHAR}, #{tradeAmount,jdbcType=DECIMAL}, #{tradeTime,jdbcType=TIMESTAMP}, 
+      #{evidenceNo,jdbcType=VARCHAR}, #{referenceNo,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, 
+      #{provePhoto,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gl.entity.PO.PayErrorOrderHandle">
+    update pay_error_order_handle
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      trade_amount = #{tradeAmount,jdbcType=DECIMAL},
+      trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      evidence_no = #{evidenceNo,jdbcType=VARCHAR},
+      reference_no = #{referenceNo,jdbcType=VARCHAR},
+      batch_no = #{batchNo,jdbcType=VARCHAR},
+      prove_photo = #{provePhoto,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, order_no, trade_amount, trade_time, evidence_no, reference_no, batch_no, 
+    prove_photo, create_time, create_by
+    from pay_error_order_handle
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_no, trade_amount, trade_time, evidence_no, reference_no, batch_no, 
+    prove_photo, create_time, create_by
+    from pay_error_order_handle
+  </select>
+</mapper>
