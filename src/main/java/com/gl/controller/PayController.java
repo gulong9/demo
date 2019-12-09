@@ -24,4 +24,9 @@ public class PayController {
         PageResult<PayErrorOrderHandle> list = payService.getList(pageNo,pageSize,key);
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("/list")
+    public void list(){
+        //先不写
+    }
 }
